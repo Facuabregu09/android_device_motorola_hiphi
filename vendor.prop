@@ -19,9 +19,6 @@ vendor.display.foss.config_path=/vendor/etc/display/FOSSConfig.xml
 # Gatekeeper
 vendor.gatekeeper.disable_spu=true
 
-# Motorola
-ro.mot.build.customerid=global
-
 # NFC
 persist.vendor.nfc.st.multisim_fw_config=true
 
