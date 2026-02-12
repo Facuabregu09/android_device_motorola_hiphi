@@ -1,7 +1,7 @@
 import /vendor/etc/init/hw/init.vendor.st21nfc.rc
 
 on fs
-    insmod /vendor/lib/modules/goodix_fod_mmi.ko
+    insmod /vendor/lib/modules/stmicro_mmi.ko
     #zram wb
     mount_all /vendor/etc/fstab.qcom.zram --early
 
@@ -29,54 +29,45 @@ on early-boot
     chmod 0444 /dev/tp_tools
 
 on post-fs-data
-    mkdir /data/vendor/gf_data 0770 system system
-    mkdir /mnt/vendor/persist/goodix 0770 system system
-    # change permission of backlight brightness for tcmd daemon
-    chmod 664 /sys/class/backlight/panel1-backlight/brightness
+    # Param updater data for various modules
+    mkdir /data/vendor/param 0775 system system
+    # prepare folders for Egis FoD fingerprint sensor
+    mkdir /data/vendor/egis 0770 system system
+    mkdir /mnt/vendor/persist/egis 0770 system system
+    mkdir /data/vendor/tzstorage/egis 0770 system system
+    mkdir /data/vendor/egis/cqa  0770 system system
+    exec_start vendor.ident-fps-overlay-sh
 
-    # Create directory for wireless charge test in factory
-    mkdir /data/vendor/wlc 0775 vendor_tcmd system
-    chown system system /sys/devices/platform/soc/1d84000.ufshc/manual_gc
-
-    # Add for after-sales ois gyro cal
-    mkdir /mnt/vendor/persist/camera/gyro_compat 0770 vendor_tcmd camera
+on early-boot
+    # Add for egis fingerprint
+    chown system system /dev/esfp0
+    chmod 0664 /dev/esfp0
 
 on boot
     # allow TCMD to access cci for OIS test
     chmod 0660 /dev/cci_intf
     chown system camera /dev/cci_intf
 
-    # change permission of brightness
-    chown system system /sys/class/backlight/aw99703-bl/brightness
-    chmod 0666 /sys/class/backlight/aw99703-bl/brightness
+    # touch screen calibration file
+    mkdir /mnt/vendor/persist/touch
+    chown vendor_tcmd system /mnt/vendor/persist/touch
+    chmod 0775 /mnt/vendor/persist/touch
 
     #bluetooth sar
     write /data/vendor/radio/bluetooth_sar disable
     chmod 0644 /data/vendor/radio/bluetooth_sar
     chown radio /data/vendor/radio/bluetooth_sar
 
-    # Touch game mode control
+    # Set touch related perms for HAL
     chown system system /sys/class/touchscreen/primary/rotate
     chmod 0660 /sys/class/touchscreen/primary/rotate
     chown system system /sys/class/touchscreen/primary/interpolation
     chmod 0660 /sys/class/touchscreen/primary/interpolation
     chown system system /sys/class/touchscreen/primary/edge
     chmod 0660 /sys/class/touchscreen/primary/edge
-    chown system system /sys/class/touchscreen/primary/sensitivity
-    chmod 0660 /sys/class/touchscreen/primary/sensitivity
+    chmod 0444 /dev/goodix_penraw
     chown system system /sys/class/touchscreen/primary/gesture
     chmod 0660 /sys/class/touchscreen/primary/gesture
-    chown system system /sys/class/touchscreen/primary/sample
-    chmod 0660 /sys/class/touchscreen/primary/sample
-    chown system system /sys/class/touchscreen/primary/palm_settings
-    chmod 0660 /sys/class/touchscreen/primary/palm_settings
-    chown system /system /sys/class/touchscreen/primary/stowed
-    chmod 0660 /sys/class/touchscreen/primary/stowed
-    chown system system /sys/class/touchscreen/primary/pitch
-    chmod 0660 /sys/class/touchscreen/primary/pitch
-    chown system system /sys/class/touchscreen/primary/log_trigger
-    chmod 0660 /sys/class/touchscreen/primary/log_trigger
-    chmod 0444 /dev/moto_penraw
 
     # change permission for goodix TP
     chmod 0664 /dev/gtp_tools
@@ -88,8 +79,12 @@ on boot
     # Set wlc icl and fw update
     chown system system /sys/class/power_supply/wireless/device/tx_mode
     chown system system /sys/class/power_supply/wireless/device/wls_input_current_limit
+    chown system system /sys/class/power_supply/wireless/device/folio_mode
+    chown system system /sys/class/power_supply/wireless/device/pen_soc
     chmod 0660 /sys/class/power_supply/wireless/device/tx_mode
     chmod 0660 /sys/class/power_supply/wireless/device/wls_input_current_limit
+    chmod 0660 /sys/class/power_supply/wireless/device/folio_mode
+    chmod 0660 /sys/class/power_supply/wireless/device/pen_soc
     write /sys/class/qcom-battery/wireless_fw_update_time_ms 7000
     write /sys/class/qcom-battery/wireless_fw_update 1
 
@@ -127,26 +122,32 @@ on property:sys.boot_completed=1
     chown vendor_tcmd system /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/tcmd
     chown vendor_tcmd system /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/force_pmic_icl
     chown vendor_tcmd system /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/force_usb_suspend
+    chown vendor_tcmd system /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/force_wls_en
+    chown vendor_tcmd system /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/force_wls_curr_max
+    chown vendor_tcmd system /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/force_wls_volt_max
     chown vendor_tcmd system /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/addr
     chown vendor_tcmd system /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/data
     chmod 0660 /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/tcmd
     chmod 0660 /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/force_pmic_icl
     chmod 0660 /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/force_usb_suspend
+    chmod 0660 /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/force_wls_en
+    chmod 0660 /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/force_wls_curr_max
+    chmod 0660 /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/force_wls_volt_max
     chmod 0660 /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/addr
     chmod 0660 /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/data
 
 #change for Hiphi because the node changed
 on property:vendor.wifi.tethering=false
-    write /sys/module/qca6750/parameters/sar_mhs disabled
+    write /sys/module/qca6490/parameters/sar_mhs disabled
 
 on property:vendor.wifi.tethering=true
-    write /sys/module/qca6750/parameters/sar_mhs enabled
+    write /sys/module/qca6490/parameters/sar_mhs enabled
 
 on property:vendor.wifi.station=true
-    write /sys/module/qca6750/parameters/sar_sta enabled
+    write /sys/module/qca6490/parameters/sar_sta enabled
 
 on property:vendor.wifi.station=false
-    write /sys/module/qca6750/parameters/sar_sta disabled
+    write /sys/module/qca6490/parameters/sar_sta disabled
 
 on property:vendor.audio.hac_on=true
     write /data/vendor/radio/hac_on enabled
@@ -175,23 +176,8 @@ on property:sys.usb.accessory_current_limit=1
 on property:sys.usb.accessory_current_limit=0
     write /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:mmi,qti-glink-charger/force_pmic_icl 0
 
-service nqnfcinfo /vendor/bin/nqnfcinfo
+service vendor.hal-fps-sh /vendor/bin/init.oem.fingerprint2.sh
     class late_start
-    group nfc
-    user system
+    user root
+    group system
     oneshot
-
-on property:vendor.qti.nfc.chipid=0xca
-    setprop persist.vendor.nfc.config_file_name libnfc-PN560_38_4MHZ.conf
-    start vendor.nfc_hal_service
-
-on property:vendor.qti.nfc.chipid=0xc1
-    setprop persist.vendor.nfc.config_file_name libnfc-SN220_38_4MHZ_UICC.conf
-    start vendor.nfc_hal_service
-
-service vendor.nfc_hal_service /vendor/bin/hw/android.hardware.nfc-service.nxp
-    override
-    class early_hal
-    user nfc
-    group nfc drmrpc system
-    disabled
