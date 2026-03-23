@@ -10,11 +10,11 @@
     <bool name="config_enableHapticTextHandle">true</bool>
 
     <!-- Indicate available ColorDisplayManager.COLOR_MODE_xxx. -->
-    <array name="config_availableColorModes">
+    <integer-array name="config_availableColorModes">
         <item>0</item>
         <item>1</item>
         <item>2</item>
-    </array>
+    </integer-array>
 
     <!-- Indicate whether to allow the device to suspend when the screen is off
          due to the proximity sensor.  This resource should only be set to true
@@ -27,7 +27,7 @@
          -2 is invalid so setting will resort to int value specified above.
          Set this to 0.0 to allow screen to go to minimal brightness.
          The user is forbidden from setting the brightness below this level. -->
-    <item format="float" name="config_screenBrightnessSettingMinimumFloat" type="dimen">0.03418803</item>
+    <item format="float" name="config_screenBrightnessSettingMinimumFloat" type="dimen">0.0039</item>
 
     <!-- Maximum screen brightness allowed by the power manager.
          -2 is invalid so setting will resort to int value specified above.
@@ -51,7 +51,7 @@
     <!-- Screen brightness used to dim the screen when the user activity
          timeout expires.  May be less than the minimum allowed brightness setting
          that can be set by the user. -->
-    <item format="float" name="config_screenBrightnessDimFloat" type="dimen">0.03418803</item>
+    <item format="float" name="config_screenBrightnessDimFloat" type="dimen">0.0039</item>
 
     <!-- Array of light sensor lux values to define our levels for auto backlight brightness support.
          The N entries of this array define N + 1 control points as follows:
@@ -73,21 +73,18 @@
          backlight values for lux levels between these control points.
 
          Must be overridden in platform specific overlays -->
-    <array name="config_autoBrightnessLevels">
+    <integer-array name="config_autoBrightnessLevels">
         <item>2</item>
         <item>4</item>
+        <item>5</item>
         <item>10</item>
-        <item>20</item>
         <item>40</item>
         <item>100</item>
         <item>325</item>
         <item>1250</item>
         <item>3500</item>
-        <item>5000</item>
-        <item>10000</item>
-        <item>20000</item>
-        <item>30000</item>
-    </array>
+        <item>5500</item>
+    </integer-array>
 
     <!-- Array of desired screen brightness in nits corresponding to the lux values
          in the config_autoBrightnessLevels array. The display brightness is defined as the measured
@@ -102,42 +99,37 @@
          array. The brightness values must be non-negative and non-decreasing. This must be
          overridden in platform specific overlays -->
     <array name="config_autoBrightnessDisplayValuesNits">
-        <item>3</item>
+        <item>5</item>
         <item>7</item>
         <item>10</item>
+        <item>12</item>
         <item>24</item>
-        <item>64</item>
-        <item>82</item>
-        <item>90</item>
-        <item>105</item>
+        <item>95</item>
+        <item>111</item>
+        <item>149</item>
         <item>192</item>
-        <item>412</item>
+        <item>252</item>
         <item>500</item>
-        <item>700</item>
-        <item>1000</item>
-        <item>1200</item>
     </array>
 
     <!-- An array describing the screen's backlight values corresponding to the brightness
          values in the config_screenBrightnessNits array.
 
          This array should be equal in size to config_screenBrightnessBacklight. -->
-    <array name="config_screenBrightnessBacklight">
-        <item>9</item>
-        <item>26</item>
-        <item>34</item>
-        <item>52</item>
-        <item>85</item>
-        <item>95</item>
-        <item>100</item>
-        <item>107</item>
-        <item>141</item>
-        <item>200</item>
-        <item>219</item>
-        <item>229</item>
-        <item>245</item>
+    <integer-array name="config_screenBrightnessBacklight">
+        <item>0</item>
+        <item>28</item>
+        <item>40</item>
+        <item>50</item>
+        <item>56</item>
+        <item>89</item>
+        <item>173</item>
+        <item>183</item>
+        <item>199</item>
+        <item>211</item>
+        <item>227</item>
         <item>255</item>
-    </array>
+    </integer-array>
 
     <!-- An array of floats describing the screen brightness in nits corresponding to the backlight
          values in the config_screenBrightnessBacklight array.  On OLED displays these  values
@@ -147,45 +139,37 @@
 
          This array should be equal in size to config_screenBrightnessBacklight -->
     <array name="config_screenBrightnessNits">
-        <item>3</item>
+        <item>0</item>
+        <item>5</item>
         <item>7</item>
         <item>10</item>
+        <item>12</item>
         <item>24</item>
-        <item>64</item>
-        <item>82</item>
-        <item>90</item>
-        <item>105</item>
+        <item>95</item>
+        <item>111</item>
+        <item>149</item>
         <item>192</item>
-        <item>412</item>
+        <item>252</item>
         <item>500</item>
-        <item>700</item>
-        <item>1000</item>
-        <item>1200</item>
     </array>
 
     <!-- MMS user agent string, for example OemNameDeviceName
          If the string contains a '%s' format string then that substring will be replaced
          with the value of Build.MODEL , ie
          <string name="config_mms_user_agent">OemName%s</string> -->
-    <string name="config_mms_user_agent" translatable="false">motorolaedge2024</string>
+    <string name="config_mms_user_agent">motorolaedge30pro</string>
 
     <!-- MMS user agent prolfile url, for example https://uaprof.oem_name.com/DeviceName.xml
          if the string contains a '%s' format string then that substring will be replaced
          with the value of Build.MODEL , ie https://uaprof.oem_name.com/%s.xml -->
-    <string name="config_mms_user_agent_profile_url" translatable="false">http://uaprof.motorola.com/phoneconfig/motov1/Profile/motov1.rdf</string>
+    <string name="config_mms_user_agent_profile_url">http://uaprof.motorola.com/phoneconfig/motov1/Profile/motov1.rdf</string>
 
     <!-- If true, the doze component is not started until after the screen has been
          turned off and the screen off animation has been performed. -->
     <bool name="config_dozeAfterScreenOffByDefault">true</bool>
 
     <!-- Type of the double tap sensor. Empty if double tap is not supported. -->
-    <string name="config_dozeDoubleTapSensorType" translatable="false">org.lineageos.sensor.double_tap</string>
-
-    <!-- Whether to enable fp unlock when screen turns off on udfps devices -->
-    <bool name="config_screen_off_udfps_enabled">true</bool>
-
-    <!-- Type of the udfps long press sensor. Empty if long press is not supported. -->
-    <string name="config_dozeUdfpsLongPressSensorType" translatable="false">org.lineageos.sensor.udfps</string>
+    <string name="config_dozeDoubleTapSensorType">org.lineageos.sensor.double_tap</string>
 
     <!-- Control whether the always on display mode is available. This should only be enabled on
          devices where the display has been tuned to be power efficient in DOZE and/or DOZE_SUSPEND
@@ -259,7 +243,7 @@
 
          @see https://www.w3.org/TR/SVG/paths.html#PathData
          -->
-    <string name="config_mainBuiltInDisplayCutout" translatable="false">M -42,0 L 42,0 L 42,106 L -42,106 Z</string>
+    <string name="config_mainBuiltInDisplayCutout">M -35,0 L 35,0 L 35,90 L -35,90 Z</string>
 
     <!-- The default refresh rate for a given device. Change this value to set a higher default
          refresh rate. If the hardware composer on the device supports display modes with a higher
@@ -290,27 +274,34 @@
          A negative brightness or lux value means that only one threshold should be used - e.g. if
          the brightness value is negative, only the lux threshold is applied. -->
     <!-- Low zone brightness thresholds in the range [0, 255] -->
-    <array name="config_brightnessThresholdsOfPeakRefreshRate" translatable="false">
-        <item>50</item>
-    </array>
+    <integer-array name="config_brightnessThresholdsOfPeakRefreshRate">
+        <item>177</item>
+    </integer-array>
 
     <!-- Low zone lux thresholds -->
-    <array name="config_ambientThresholdsOfPeakRefreshRate" translatable="false">
+    <integer-array name="config_ambientThresholdsOfPeakRefreshRate">
         <item>-1</item>
-    </array>
+    </integer-array>
 
     <!-- List of biometric sensors on the device, in decreasing strength. Consumed by AuthService
          when registering authenticators with BiometricService. Format must be ID:Modality:Strength,
          where: IDs are unique per device, Modality as defined in BiometricAuthenticator.java,
          and Strength as defined in Authenticators.java -->
-    <array name="config_biometric_sensors" translatable="false">
+    <string-array name="config_biometric_sensors">
         <item>0:2:15</item>
+
+    </string-array>
+
+    <!-- An array of arrays of side fingerprint sensor properties relative to each display.
+         Note: this value is temporary and is expected to be queried directly
+         from the HAL in the future. -->
+    <array name="config_sfps_sensor_props">
+        <item>@array/config_sfps_sensor_props_0</item>
     </array>
 
-    <!-- The properties of a UDFPS sensor in pixels, in the order listed below: -->
-    <array name="config_udfps_sensor_props" translatable="false">
-        <item>540</item>
-        <item>2167</item>
-        <item>91</item>
+    <array name="config_sfps_sensor_props_0">
+        <item>0</item> <!--item>sensorLocationX</item-->
+        <item>690</item> <!--item>sensorLocationY</item-->
+        <item>0</item> <!--item>sensorRadius</item-->
     </array>
 </resources>
