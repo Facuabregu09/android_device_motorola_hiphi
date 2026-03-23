@@ -3,10 +3,10 @@ masterclear.allow_retain_esim_profiles_after_fdr=true
 ro.telephony.esim_slot_id=1
 
 # Moto
-ro.vendor.product.display=motorola edge 2024
+ro.vendor.product.display=motorola edge 30 pro
 
 # Radio
-ro.vendor.radio.imei.sv=16
+ro.vendor.radio.imei.sv=58
 
 # SKU specific properties
 import /product/etc/hardware.sku.${ro.boot.hardware.sku}.prop

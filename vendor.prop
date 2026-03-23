@@ -1,9 +1,9 @@
 # Audio
 vendor.audio.hac_on=false
-vendor.audio.min.dr0=5.1
-vendor.audio.max.dr0=6.9
-vendor.audio.min.dr1=5.1
-vendor.audio.max.dr1=6.9
+vendor.audio.min.dr0=5.0
+vendor.audio.max.dr0=7.5
+vendor.audio.min.dr1=5.0
+vendor.audio.max.dr1=8.0
 vendor.audio.min.temp=20.0
 vendor.audio.max.temp=60.0
 
@@ -15,9 +15,6 @@ ro.vendor.display.foss=1
 ro.vendor.display.sensortype=2
 vendor.display.foss.config=1
 vendor.display.foss.config_path=/vendor/etc/display/FOSSConfig.xml
-
-# Fingerprint
-ro.hardware.fingerprint=goodix
 
 # Motorola
 ro.mot.build.customerid=global
