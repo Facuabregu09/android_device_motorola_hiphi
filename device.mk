@@ -78,11 +78,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_SOONG_NAMESPACES += $(LOCAL_PATH)
 
 # VINTF
-ODM_MANIFEST_SKUS += dn n
+ODM_MANIFEST_SKUS +=  dn dnp n np
 ODM_MANIFEST_DN_FILES := \
     $(LOCAL_PATH)/vintf/manifest_dn.xml
+ODM_MANIFEST_DNP_FILES := \
+    $(LOCAL_PATH)/vintf/manifest_dnp.xml
 ODM_MANIFEST_N_FILES := \
     $(LOCAL_PATH)/vintf/manifest_n.xml \
+    device/motorola/sm8475-common/vintf/manifest_ss.xml
+ODM_MANIFEST_NP_FILES := \
+    $(LOCAL_PATH)/vintf/manifest_np.xml \
     device/motorola/sm8475-common/vintf/manifest_ss.xml
 
 # Inherit from vendor blobs
