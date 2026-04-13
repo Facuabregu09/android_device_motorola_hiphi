@@ -6,12 +6,18 @@ on early-boot
 	# Change ownership and permision of st nfc device
 	chown nfc nfc /dev/st21nfc
 	chmod 0660 /dev/st21nfc
+	chown secure_element secure_element /dev/st54spi
+	chmod 0660 /dev/st54spi
 
 on property:ro.vendor.hw.nfc=true
 	start vendor.st_nfc_hal_service
 
 on property:ro.vendor.hw.nfc=st
 	setprop persist.vendor.nfc.config_file_name libnfc-hal-st.conf
+	start vendor.st_nfc_hal_service
+
+on property:ro.vendor.hw.nfc=ese_st
+	setprop persist.vendor.nfc.config_file_name libnfc-hal-st54j.conf
 	start vendor.st_nfc_hal_service
 
 service vendor.st_nfc_hal_service /vendor/bin/hw/android.hardware.nfc-service.st
