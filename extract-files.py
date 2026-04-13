@@ -1,21 +1,21 @@
 #!/usr/bin/env -S PYTHONPATH=../../../tools/extract-utils python3
 #
-# SPDX-FileCopyrightText: 2024 The LineageOS Project
+# SPDX-FileCopyrightText: The LineageOS Project
 # SPDX-License-Identifier: Apache-2.0
 #
 
 from extract_utils.extract import extract_fns_user_type
-from extract_utils.extract_star import (
-    extract_star_firmware,
-    star_firmware_regex,
-)
+from extract_utils.extract_star import extract_star_firmware
 from extract_utils.fixups_blob import (
     BlobFixupCtx,
     File,
     blob_fixup,
     blob_fixups_user_type,
 )
-from extract_utils.fixups_lib import lib_fixups
+from extract_utils.fixups_lib import (
+    lib_fixups,
+    lib_fixups_user_type,
+)
 from extract_utils.main import (
     ExtractUtils,
     ExtractUtilsModule,
@@ -60,6 +60,9 @@ def blob_fixup_graphic_buffer_size(
                 f.seek(int(offset[:-1], 16))
                 f.write(b'\x00\xa6\x81\x52')  # AArch64 mov w0, #0xd30
 
+lib_fixups: lib_fixups_user_type = {
+    **lib_fixups,
+}
 
 blob_fixups: blob_fixups_user_type = {
     'vendor/lib64/libcamximageformatutils.so': blob_fixup().replace_needed(
@@ -89,7 +92,7 @@ blob_fixups: blob_fixups_user_type = {
 }
 
 extract_fns: extract_fns_user_type = {
-    star_firmware_regex: extract_star_firmware,
+    r'(bootloader|radio)\.img': extract_star_firmware,
 }
 
 module = ExtractUtilsModule(
@@ -98,11 +101,13 @@ module = ExtractUtilsModule(
     blob_fixups=blob_fixups,
     lib_fixups=lib_fixups,
     namespace_imports=namespace_imports,
-    add_generated_carriersettings=True,
-    add_firmware_proprietary_file=True,
     extract_fns=extract_fns,
+    add_firmware_proprietary_file=True,
+    add_generated_carriersettings=True,
 )
 
 if __name__ == '__main__':
-    utils = ExtractUtils.device_with_common(module, 'sm8475-common', module.vendor)
+    utils = ExtractUtils.device_with_common(
+        module, 'sm8475-common', module.vendor
+    )
     utils.run()
