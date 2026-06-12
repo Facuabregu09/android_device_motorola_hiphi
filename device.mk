@@ -92,3 +92,7 @@ ODM_MANIFEST_NP_FILES := \
 
 # Inherit from vendor blobs
 $(call inherit-product, vendor/motorola/hiphi/hiphi-vendor.mk)
+
+# Privapp permissions allowlist (fix: system_server crash on boot)
+PRODUCT_COPY_FILES += \
+    device/motorola/hiphi/permissions/privapp-permissions-hiphi.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-hiphi.xml

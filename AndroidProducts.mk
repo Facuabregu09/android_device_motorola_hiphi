@@ -4,4 +4,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_hiphi.mk
+    $(LOCAL_DIR)/custom_hiphi.mk
