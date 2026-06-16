@@ -96,3 +96,13 @@ $(call inherit-product, vendor/motorola/hiphi/hiphi-vendor.mk)
 # Privapp permissions allowlist (fix: system_server crash on boot)
 PRODUCT_COPY_FILES += \
     device/motorola/hiphi/permissions/privapp-permissions-hiphi.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-hiphi.xml
+
+
+# Display density override (DPI 420)
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.sf.lcd_density=420
+
+# Dexopt: compilar apps a speed (apertura mas rapida)
+PRODUCT_PRODUCT_PROPERTIES += \
+    pm.dexopt.install=speed \
+    pm.dexopt.bg-dexopt=speed

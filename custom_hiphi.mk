@@ -12,7 +12,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/motorola/hiphi/device.mk)
 
 # Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/custom/config/common_full_phone.mk)
 
 PRODUCT_NAME := custom_hiphi
 PRODUCT_DEVICE := hiphi
@@ -27,5 +27,6 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="hiphi_g-user 14 U1SHS34.1-177-8-3 0be4e-aae78 release-keys" \
     BuildFingerprint="motorola/hiphi_g/hiphi:14/U1SHS34.1-177-8-3/0be4e-aae78:user/release-keys"
 
-# GMS (PixelOS)
-$(call inherit-product, vendor/pixel/gms/products/gms.mk)
+
+# PixelOS features (launcher, wallpapers, gms, fonts, sounds)
+$(call inherit-product, vendor/custom/config/pixel.mk)
