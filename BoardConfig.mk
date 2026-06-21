@@ -42,4 +42,6 @@ BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(BOARD_AVB_ROLLBACK_INDEX)
 include vendor/motorola/hiphi/BoardConfigVendor.mk
 
 # GMS (PixelOS)
+ifeq ($(TARGET_PRODUCT),custom_hiphi)
 include vendor/pixel/gms/products/board.mk
+endif

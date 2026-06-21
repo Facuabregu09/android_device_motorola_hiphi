@@ -12,7 +12,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/motorola/hiphi/device.mk)
 
 # Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/infinity/config/common_full_phone.mk)
 
 PRODUCT_NAME := lineage_hiphi
 PRODUCT_DEVICE := hiphi
@@ -26,3 +26,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceProduct="hiphi_g" \
     BuildDesc="hiphi_g-user 14 U1SHS34.1-177-8-3 0be4e-aae78 release-keys" \
     BuildFingerprint="motorola/hiphi_g/hiphi:14/U1SHS34.1-177-8-3/0be4e-aae78:user/release-keys"
+
+# Infinity X device info
+INFINITY_MAINTAINER := Facundo_Abregu
+TARGET_DISABLE_EPPE := true
+INFINITY_BUILD := hiphi
