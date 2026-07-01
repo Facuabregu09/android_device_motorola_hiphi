@@ -90,8 +90,8 @@ ODM_MANIFEST_NP_FILES := \
     $(LOCAL_PATH)/vintf/manifest_np.xml \
     device/motorola/sm8475-common/vintf/manifest_ss.xml
 
-# Inherit from vendor blobs
-$(call inherit-product, vendor/motorola/hiphi/hiphi-vendor.mk)
+# Inherit from vendor blobs (TEMP: commented until blob extraction)
+# $(call inherit-product, vendor/motorola/hiphi/hiphi-vendor.mk)
 
 # Privapp permissions allowlist (fix: system_server crash on boot)
 PRODUCT_COPY_FILES += \
