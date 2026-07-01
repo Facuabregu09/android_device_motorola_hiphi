@@ -353,17 +353,17 @@ vendor/etc/st21nfc_conf_ds.txt
 vendor/etc/st21nfc_conf_ss.txt
 
 # NFC - configs - from hiphic - 14 U1SC34.1-43-3 599b27-f8cb1 release-keys - RETCN variant
-vendor/etc/libnfc-hal-st.conf:vendor/etc/libnfc-hal-st54j.conf|63d549b88312a718037d9c934f14ff8a458c14ce
-vendor/etc/libnfc-nci-st.conf:vendor/etc/libnfc-nci-st54j.conf|6fb9e88728cbe4ce93c736321a3f6f9ce07e3068
-vendor/etc/st54j_conf_ds.txt|b0ebc1cd8324bae70d00dad9ad55bba127191530
-vendor/etc/st54j_conf_ss.txt|fdb6a1d2d579b1c602586e70da61dc195558ca54
+# vendor/etc/libnfc-hal-st.conf:vendor/etc/libnfc-hal-st54j.conf|63d549b88312a718037d9c934f14ff8a458c14ce
+# vendor/etc/libnfc-nci-st.conf:vendor/etc/libnfc-nci-st54j.conf|6fb9e88728cbe4ce93c736321a3f6f9ce07e3068
+# vendor/etc/st54j_conf_ds.txt|b0ebc1cd8324bae70d00dad9ad55bba127191530
+# vendor/etc/st54j_conf_ss.txt|fdb6a1d2d579b1c602586e70da61dc195558ca54
 
 # NFC firmware
 vendor/firmware/st21nfc_fw.bin
 vendor/firmware/st21nfc_fw7.bin
 
 # NFC firmware - from hiphic - 14 U1SC34.1-43-3 599b27-f8cb1 release-keys - RETCN variant
-vendor/firmware/st54j_fw.bin|9256715aa41e64a11a6779aa9868ee5334d6ae82
+# vendor/firmware/st54j_fw.bin|9256715aa41e64a11a6779aa9868ee5334d6ae82
 
 # Sensor - configs
 vendor/etc/sensors/config/bmp380.json
@@ -444,18 +444,18 @@ vendor/firmware/tianma_goodix_cfg_group.bin
 vendor/firmware/tianma_goodix_test_limits_255.csv
 
 # Touchscreen firmware - from hiphic - 14 U1SC34.1-43-3 599b27-f8cb1 release-keys - RETCN variant
-vendor/firmware/goodix-csot-gt9916-2201060e-61d6a5fe-hiphic.bin|14d4a1dc29eadf595fa033e07afc09d68fb72060
-vendor/firmware/stmicro-csot-fts3639-22010628-ab151028-hiphic.ftb|7f2af0206bda6bee4147c1fd084ae43426f08b41
+# vendor/firmware/goodix-csot-gt9916-2201060e-61d6a5fe-hiphic.bin|14d4a1dc29eadf595fa033e07afc09d68fb72060
+# vendor/firmware/stmicro-csot-fts3639-22010628-ab151028-hiphic.ftb|7f2af0206bda6bee4147c1fd084ae43426f08b41
 
 # Touchscreen firmware - from hiphid - 12 S3SF32.35-5-9 37351-117f9 - RETCN variant
-vendor/firmware/goodix-csot-gt9916-2201060e-61d6a5fe-hiphid.bin|14d4a1dc29eadf595fa033e07afc09d68fb72060
+# vendor/firmware/goodix-csot-gt9916-2201060e-61d6a5fe-hiphid.bin|14d4a1dc29eadf595fa033e07afc09d68fb72060
 
 # Touchscreen firmware (recovery)
 vendor/firmware/goodix-csot-gt9916-22021011-625d38a-hiphi.bin:recovery/root/vendor/firmware/goodix-csot-gt9916-22021011-625d38a-hiphi.bin
 vendor/firmware/goodix-tianma-gt9916-22021011-625d463-hiphi.bin:recovery/root/vendor/firmware/goodix-tianma-gt9916-22021011-625d463-hiphi.bin
 
 # Touchscreen firmware (recovery) - from hiphic - 14 U1SC34.1-43-3 599b27-f8cb1 release-keys - RETCN variant
-vendor/firmware/goodix-csot-gt9916-2201060e-61d6a5fe-hiphic.bin:recovery/root/vendor/firmware/goodix-csot-gt9916-2201060e-61d6a5fe-hiphic.bin|14d4a1dc29eadf595fa033e07afc09d68fb72060
+# vendor/firmware/goodix-csot-gt9916-2201060e-61d6a5fe-hiphic.bin:recovery/root/vendor/firmware/goodix-csot-gt9916-2201060e-61d6a5fe-hiphic.bin|14d4a1dc29eadf595fa033e07afc09d68fb72060
 
 # Touchscreen firmware (recovery) - from hiphid - 12 S3SF32.35-5-9 37351-117f9 - RETCN variant
-vendor/firmware/goodix-csot-gt9916-2201060e-61d6a5fe-hiphid.bin:recovery/root/vendor/firmware/goodix-csot-gt9916-2201060e-61d6a5fe-hiphid.bin|14d4a1dc29eadf595fa033e07afc09d68fb72060
+# vendor/firmware/goodix-csot-gt9916-2201060e-61d6a5fe-hiphid.bin:recovery/root/vendor/firmware/goodix-csot-gt9916-2201060e-61d6a5fe-hiphid.bin|14d4a1dc29eadf595fa033e07afc09d68fb72060
